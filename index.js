@@ -24,12 +24,8 @@ app.get("/edit/:name", (req, res) => {
  });
 });
 
-// fs.rename("./files/task1.txt", "./files/kart1.txt", (err) => {});
-
 app.post("/edit", (req, res) => {
  fs.rename(`./files/${req.body.old}`, `./files/${req.body.new}.txt`, (err) => {
-  console.log(req.body.new);
-  console.log(req.body.old);
   res.redirect("/");
  });
 });
