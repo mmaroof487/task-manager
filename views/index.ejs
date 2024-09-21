@@ -22,7 +22,10 @@
     <div class="task w-72 px-3 py-4 rounded-md bg-zinc-700">
      <h1 class="text-lg font-bold"><%= val %></h1>
 
-     <a href="/file/<%=val%>" class="block text-blue-600 hover:underline">Read more...</a>
+     <div class="flex gap-5">
+      <a href="/file/<%=val%>" class="inline text-blue-600 hover:underline">Read more...</a>
+      <a href="/edit/<%=val%>" class="inline text-blue-600 hover:underline">Edit</a>
+     </div>
     </div>
 
     <% }) %> <% } else { %>

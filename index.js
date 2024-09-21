@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const fs = require("fs");
-const { log } = require("console");
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -17,6 +16,21 @@ app.get("/", (req, res) => {
 app.get("/file/:name", (req, res) => {
  fs.readFile(`./files/${req.params.name}`, "utf8", (err, data) => {
   res.render("show", { name: req.params.name, data: data });
+ });
+});
+app.get("/edit/:name", (req, res) => {
+ fs.readFile(`./files/${req.params.name}`, "utf8", (err, data) => {
+  res.render("edit", { name: req.params.name, data: data });
+ });
+});
+
+// fs.rename("./files/task1.txt", "./files/kart1.txt", (err) => {});
+
+app.post("/edit", (req, res) => {
+ fs.rename(`./files/${req.body.old}`, `./files/${req.body.new}.txt`, (err) => {
+  console.log(req.body.new);
+  console.log(req.body.old);
+  res.redirect("/");
  });
 });
 
